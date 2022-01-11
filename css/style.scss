@@ -1,0 +1,323 @@
+@import "_defaults";
+@import "_variables";
+@import "placeholders";
+@import "_mixins";
+
+body {
+  margin: auto;
+  max-width: 1440px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(100vh, 1fr);
+}
+.left-side {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 0.5fr repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+.hamburger {
+  display: none;
+  position: absolute;
+}
+
+.close {
+  display: none;
+  position: absolute;
+}
+.logo {
+  position: absolute;
+  top: 8%;
+  left: 20%;
+  padding: 0 0 0 0.5rem;
+}
+
+.right-side {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 0.5fr repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+.text {
+  grid-column: 2/-1;
+  grid-row: 2/5;
+  padding: 0 0 0 5.2rem;
+  align-self: center;
+}
+.bg-color {
+  background: $clr_light_accent;
+  border-radius: 0 0 30px 30px;
+  grid-column: 1/-1;
+  grid-row: 1/5;
+  z-index: -1;
+  height: 70%;
+}
+.nav-bar {
+  grid-column: 2/5;
+  grid-row: 1;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+
+  & .link {
+    flex: 0 0 100px;
+    text-transform: uppercase;
+    font-family: $font_headings;
+    color: $clr_dark;
+    font-weight: 700;
+    padding: 0 1rem 0 1rem;
+  }
+  & .link:nth-child(4) {
+    height: 50px;
+    width: 50px;
+    background-color: #bbb;
+    border-radius: 50%;
+    transform: scale(0.1);
+    justify-self: center;
+    flex: 0 0 50px;
+    cursor: default;
+  }
+  & .link:nth-child(5) {
+    flex: 0 0 250px;
+    color: $clr_accent;
+  }
+}
+
+.link:active {
+  text-decoration: underline;
+}
+
+.bg-image {
+  grid-column: 1/-1;
+  grid-row: 2/6;
+  margin: 3.5rem 0 0 2rem;
+  background: url("../images/illustration-devices.svg");
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+.heading {
+  font-family: $font_headings;
+  font-size: 4rem;
+  width: 90%;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  line-height: 1;
+  color: $clr_dark;
+  text-transform: uppercase;
+}
+.paragraph {
+  font-family: $font_headings;
+  font-size: 16px;
+  margin: 3rem 0 0 0;
+  padding: 3.2rem 0 1rem 0;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: $clr_accent;
+}
+.special {
+  font-family: $font_headings;
+  background: $clr_dark;
+  color: $clr_light_accent;
+  padding: 2px 10px 5px 10px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0.4rem 0 0;
+}
+.paragraph-main {
+  font-family: $font_body;
+  font-size: 18px;
+  width: 50%;
+  line-height: 1.5;
+  margin: 1rem 0 0 0;
+  padding: 1rem 0 2rem 0;
+  color: $clr_dark;
+  font-weight: 400;
+}
+.btn {
+  background: $clr_primary;
+  color: $clr_light_accent;
+  outline: none;
+  border: none;
+  padding: 15px 2.1rem 15px 2.1rem;
+  border-radius: 5px;
+  font-weight: 700;
+  font-family: $font_headings;
+  font-size: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+small {
+  font-size: 16px;
+  font-family: $font_headings;
+  letter-spacing: 5px;
+  padding: 0 0 0 1.4rem;
+  text-transform: uppercase;
+  color: $clr_accent;
+}
+.wrap {
+  padding: 2.6rem 0 0 0;
+}
+
+/*-------------------------CODE FOR MOBILE QUERY-----------------------*/
+
+@include respond(mobile) {
+  body {
+    margin: 0;
+    min-width: 375px;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(50vh, 1fr);
+  }
+
+  .logo {
+    position: absolute;
+    top: 4%;
+    left: 0%;
+    transform: scale(0.9);
+    padding: 0 0 0 1.5rem;
+  }
+  /*----------------Now this is Bottom container----------------*/
+  .left-side {
+    grid-row: 2;
+    display: grid;
+  }
+
+  /*----------------Now this is Top container----------------*/
+  .right-side {
+    grid-row: 1;
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+  .text {
+    grid-column: 1/-1;
+    grid-row: 1/5;
+    padding: 0 0 0 2rem;
+    align-self: center;
+  }
+  .bg-color {
+    grid-column: 3/6;
+    grid-row: 1/5;
+    border-radius: 0 0 0 30px;
+    height: 100%;
+  }
+
+  /*------------------------ADD yhis class for responsive nav-bar---------------*/
+  .responsive {
+    position: absolute;
+    top: 12%;
+    flex-direction: column;
+    background: white;
+    width: 87%;
+    height: 28%;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+  .nav-bar {
+    grid-column: 1/5;
+    grid-row: 1;
+    display: none;
+    align-items: center;
+
+    & .link {
+      flex: 0 0 10px;
+      padding: 1.5rem 0rem 0 1rem;
+      letter-spacing: 2px;
+    }
+    & .link:nth-child(4) {
+      display: none;
+    }
+    & .link:nth-child(5) {
+      flex: 0 0 1rem;
+      width: 80%;
+      margin-top: 1rem;
+      text-align: center;
+      border-top: 2px solid $clr_light_accent;
+    }
+  }
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+  }
+
+  .close {
+    display: none;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+  }
+
+  .bg-image {
+    grid-column: 1/6;
+    grid-row: 1;
+    margin: 8rem 0 0 0rem;
+    background: url("../images/illustration-devices.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60%;
+  }
+  .heading {
+    font-size: 2.7rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .paragraph {
+    font-family: $font_headings;
+    margin: 1rem 0 0 0;
+    padding: 1rem 0 1rem 0;
+    color: $clr_accent;
+  }
+  .special {
+    font-family: $font_headings;
+    background: $clr_dark;
+    margin: 0 0.4rem 0 0;
+  }
+  .paragraph-main {
+    font-family: $font_body;
+    width: 80%;
+    line-height: 1.5;
+    margin: 1rem 0 0 0;
+    padding: 1rem 0 0 0;
+  }
+  .btn {
+    background: $clr_primary;
+    color: $clr_light_accent;
+    padding: 10px 1.5rem 10px 1.5rem;
+    font-size: 14px;
+  }
+
+  .small {
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 0 0 0 1.4rem;
+  }
+  .wrap {
+    padding: 2.6rem 0 0 0;
+  }
+}
+/*------------------------From Front End Mentors-------------------*/
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
